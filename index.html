@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Política de privacidad de boxRock.">
+  <meta name="description" content="Política de privacidad de boxRock: bóveda cifrada local para fotos, videos y archivos.">
   <title>Política de privacidad - boxRock</title>
   <style>
     body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.65; color: #242424; }
@@ -11,47 +11,70 @@
     h1 { border-bottom: 2px solid #e8e4ef; padding-bottom: .5rem; }
     a { color: #5b38a8; }
     .updated { color: #666; }
+    .box { background: #f7f5fb; border: 1px solid #e8e4ef; border-radius: 10px; padding: 1rem 1.2rem; margin: 1.2rem 0; }
+    ul { padding-left: 1.2rem; }
+    code { background: #f0edf6; padding: 1px 5px; border-radius: 4px; }
   </style>
 </head>
 <body>
   <h1>Política de privacidad de boxRock</h1>
-  <p class="updated">Última actualización: 6 de noviembre de 2026</p>
+  <p class="updated">Última actualización: 8 de noviembre de 2026 · Versión de la app: 1.0.2</p>
 
-  <h2>1. Responsable y alcance</h2>
-  <p>boxRock, una bóveda personal para archivos, es responsable del tratamiento descrito en esta política. Esta política explica qué información se procesa, con qué fines y cómo solicitar su eliminación.</p>
+  <div class="box">
+    <strong>Responsable del tratamiento:</strong> Alejandro Carvajal Vargas<br>
+    <strong>Contacto:</strong> <a href="mailto:alejandrocarvajalvargas@gmail.com">alejandrocarvajalvargas@gmail.com</a><br>
+    <strong>Aplicación:</strong> boxRock (<code>com.boxfuerte.boxrockvault</code>)<br>
+    <strong>Eliminación de cuenta y datos:</strong> <a href="eliminar-cuenta.html">instrucciones y enlace directo</a>
+  </div>
+
+  <h2>1. Responsable, alcance y cumplimiento normativo</h2>
+  <p>boxRock es una bóveda personal para archivos que funciona de forma local en tu dispositivo. Esta política explica qué información se procesa, con qué finalidad, durante cuánto tiempo y cómo puedes ejercer tus derechos.</p>
+  <p>Esta política se ha redactado conforme al Reglamento General de Protección de Datos de la Unión Europea (RGPD, Reglamento UE 2016/679), la Ley Estatutaria 1581 de 2012 de Protección de Datos Personales de Colombia (Habeas Data), la Ley 1266 de 2008, la California Consumer Privacy Act (CCPA/CPRA) y las Políticas de Datos de Usuario de Google Play.</p>
 
   <h2>2. Información que procesa la aplicación</h2>
+  <p>boxRock aplica los principios de minimización y privacidad por diseño. Solo se procesan los siguientes datos:</p>
   <ul>
-    <li><strong>Correo electrónico y datos de autenticación:</strong> el correo que registras se guarda en el dispositivo y se utiliza para vincular o recuperar el acceso a la cuenta mediante Firebase Authentication. La contraseña se utiliza para autenticarte; la app no la guarda localmente en texto claro.</li>
-    <li><strong>Recuperación y alertas:</strong> si solicitas recuperación por correo o activas alertas de intrusos, se procesa tu correo y los datos necesarios para el mensaje (por ejemplo, código de recuperación, intentos fallidos, motivo y hora). Las alertas se envían únicamente al correo registrado en tu bóveda.</li>
-    <li><strong>Comentarios enviados voluntariamente:</strong> si envías comentarios, se transmiten el correo de contacto, categoría, calificación, texto del mensaje, versión de la app y sistema operativo/versión del sistema.</li>
+    <li><strong>Correo electrónico y datos de autenticación:</strong> el correo que registras se guarda cifrado en el dispositivo y se utiliza para vincular o recuperar el acceso a la cuenta mediante Firebase Authentication. La contraseña se usa para autenticarte; la app no la guarda localmente en texto claro.</li>
+    <li><strong>Recuperación y alertas de seguridad:</strong> si solicitas recuperación por correo o se activan alertas de intrusos, se procesa tu correo y los datos necesarios para el mensaje (por ejemplo, código de recuperación, intentos fallidos, motivo y hora). Las alertas se envían únicamente al correo registrado en tu propia bóveda, nunca al desarrollador.</li>
+    <li><strong>Comentarios enviados voluntariamente:</strong> si usas el formulario de comentarios, se transmiten el correo de contacto, la categoría, la calificación, el texto del mensaje, la versión de la app y el sistema operativo/versión del sistema.</li>
     <li><strong>Verificación de integridad:</strong> Firebase App Check con Google Play Integrity procesa tokens e información técnica necesaria para comprobar que la solicitud procede de una instalación legítima y reducir abusos.</li>
-    <li><strong>Información almacenada en el dispositivo:</strong> preferencias, intentos de acceso, correo de recuperación, metadatos de carpetas y archivos y el contenido que agregas a la bóveda.</li>
+    <li><strong>Información almacenada en el dispositivo:</strong> preferencias, intentos de acceso, correo de recuperación, metadatos de carpetas y archivos, y el contenido que agregas a la bóveda.</li>
   </ul>
 
-  <h2>3. Archivos y biometría</h2>
-  <p>Las fotos, videos y otros archivos de la bóveda se cifran y permanecen en el almacenamiento privado del dispositivo; boxRock no los sube a sus servidores. Al importar un archivo, la app elimina el original después de guardarlo cifrado. Los metadatos de la bóveda también se guardan cifrados localmente.</p>
-  <p>La autenticación biométrica, si la activas, la realiza el sistema operativo del dispositivo. boxRock no recibe ni almacena huellas, rostros ni plantillas biométricas.</p>
+  <h2>3. Archivos, cifrado y biometría</h2>
+  <p>Las fotos, videos y otros archivos de la bóveda se cifran con <strong>AES-256-CBC + HMAC-SHA256</strong> (cifrado autenticado, Encrypt-then-MAC) con un vector de inicialización aleatorio de 16 bytes por archivo. La contraseña local se deriva mediante <strong>PBKDF2-HMAC-SHA256</strong> con 100.000 iteraciones y las claves se guardan en el almacenamiento seguro del sistema operativo (Keystore/Keychain).</p>
+  <p>Los archivos permanecen en el almacenamiento privado del dispositivo y <strong>boxRock no los sube a servidores propios</strong>. Al importar un archivo, la app puede solicitar permiso para eliminar el original después de guardarlo cifrado. Los metadatos de la bóveda también se guardan localmente.</p>
+  <p>La autenticación biométrica, si la activas, la realiza el sistema operativo del dispositivo mediante Android BiometricPrompt. boxRock no recibe ni almacena huellas, rostros ni plantillas biométricas.</p>
 
-  <h2>4. Finalidades y proveedores</h2>
-  <p>Usamos la información para proporcionar autenticación y recuperación, enviar los mensajes que solicitas y proteger la app contra abusos. Para ello, la información descrita puede ser procesada por:</p>
+  <h2>4. Finalidades, base legal y proveedores</h2>
+  <p>Tratamos la información para: (i) prestar el servicio de bóveda y autenticación; (ii) enviar los mensajes de recuperación y seguridad que tú solicitas; (iii) atender comentarios de soporte; y (iv) prevenir fraudes y abusos. Las bases legales son la ejecución del servicio solicitado, tu consentimiento informado (aceptado antes de crear la bóveda) y el interés legítimo en la seguridad de la aplicación.</p>
+  <p>Para ello, la información descrita puede ser procesada por:</p>
   <ul>
-    <li><strong>Google Firebase Authentication y Firebase App Check/Play Integrity:</strong> autenticación, recuperación y verificación de integridad. Consulta la <a href="https://firebase.google.com/support/privacy">información de privacidad de Firebase</a>.</li>
-    <li><strong>EmailJS:</strong> transmisión de correos de recuperación, comentarios y alertas. El contenido enviado puede quedar en el buzón de destino y estar sujeto a las políticas y registros del proveedor. Consulta la <a href="https://www.emailjs.com/legal/privacy-policy/">política de privacidad de EmailJS</a>.</li>
+    <li><strong>Google Firebase Authentication y Firebase App Check/Play Integrity:</strong> autenticación, recuperación y verificación de integridad. Consulta la <a href="https://firebase.google.com/support/privacy" rel="noopener">información de privacidad de Firebase</a>.</li>
+    <li><strong>EmailJS:</strong> transmisión de correos de recuperación, comentarios y alertas. El contenido enviado puede quedar en el buzón de destino y estar sujeto a las políticas y registros del proveedor. Consulta la <a href="https://www.emailjs.com/legal/privacy-policy/" rel="noopener">política de privacidad de EmailJS</a>.</li>
   </ul>
-  <p>No vendemos información personal ni usamos la información de la bóveda para publicidad. Los proveedores pueden procesar información en países distintos al tuyo conforme a sus políticas.</p>
+  <p>No vendemos información personal, no usamos los datos de la bóveda para publicidad y no incluimos SDKs de anuncios ni rastreadores. Los proveedores pueden procesar información en países distintos al tuyo (transferencias internacionales) conforme a sus políticas y a las garantías contractuales que ofrecen.</p>
 
-  <h2>5. Protección y conservación</h2>
-  <p>El contenido y los metadatos de la bóveda se cifran localmente con AES-256-CBC; la contraseña local se protege mediante PBKDF2-HMAC-SHA256 y las claves se guardan en el almacenamiento seguro del sistema. Las comunicaciones con Firebase y EmailJS usan HTTPS.</p>
-  <p>Los datos locales se conservan hasta que elimines la cuenta y los datos desde Ajustes o desinstales la aplicación. La cuenta de Firebase se conserva hasta que se elimine. Los correos enviados pueden conservarse en el buzón de destino y conforme a las políticas de los proveedores.</p>
+  <h2>5. Conservación</h2>
+  <p>Los datos locales se conservan hasta que elimines la cuenta y los datos desde Ajustes o desinstales la aplicación. La cuenta de Firebase se conserva hasta que se elimine. Los correos enviados pueden conservarse en el buzón de destino conforme a las políticas de los proveedores. Las solicitudes de eliminación recibidas por correo se atienden en un plazo máximo de 72 horas hábiles y no se conservan copias residuales bajo nuestro control.</p>
 
-  <h2>6. Eliminación de cuenta y datos</h2>
-  <p>Puedes eliminar la cuenta vinculada a Firebase y los datos locales de la bóveda desde <strong>Ajustes &gt; Eliminar cuenta y datos</strong>. La acción requiere la contraseña y es permanente. Si no puedes completar el proceso, o quieres solicitar la eliminación de un correo o comentario enviado, escribe a <a href="mailto:alejandrocarvajal8612@gmail.com">alejandrocarvajal8612@gmail.com</a> desde el correo asociado. Eliminaremos la información bajo nuestro control; los proveedores pueden conservar registros conforme a sus obligaciones y políticas.</p>
+  <h2>6. Eliminación de cuenta y datos (derecho de supresión)</h2>
+  <p>Puedes eliminar la cuenta vinculada a Firebase y todos los datos locales de la bóveda desde <strong>Ajustes &gt; Eliminar cuenta y datos</strong>. La acción requiere tu contraseña y es permanente e irreversible: se borran archivos cifrados, carpetas, metadatos, correo registrado e historial.</p>
+  <p>Si no puedes completar el proceso o quieres solicitar la eliminación de un correo o comentario enviado, consulta la página <a href="eliminar-cuenta.html"><strong>Eliminación de cuenta y datos</strong></a> o escribe a <a href="mailto:alejandrocarvajalvargas@gmail.com?subject=Eliminar%20datos%20boxRock">alejandrocarvajalvargas@gmail.com</a> desde el correo asociado. Eliminaremos la información bajo nuestro control; los proveedores pueden conservar registros conforme a sus obligaciones legales y políticas.</p>
 
-  <h2>7. Menores</h2>
-  <p>boxRock no está diseñada específicamente para menores de 13 años y no solicita intencionalmente información personal de ellos. Si crees que un menor nos proporcionó información, contáctanos para solicitar su eliminación.</p>
+  <h2>7. Tus derechos</h2>
+  <p>Según tu jurisdicción, puedes ejercer los derechos de acceso, rectificación, cancelación/supresión, oposición, limitación, portabilidad y a no ser objeto de decisiones automatizadas (derechos ARCO y RGPD). Para ejercerlos, envía un correo a <a href="mailto:alejandrocarvajalvargas@gmail.com">alejandrocarvajalvargas@gmail.com</a> indicando tu solicitud. También puedes presentar una reclamación ante la autoridad de protección de datos de tu país (por ejemplo, la Superintendencia de Industria y Comercio en Colombia o la autoridad de control de tu Estado miembro en la UE).</p>
+  <p>No discriminamos a los usuarios por ejercer sus derechos de privacidad.</p>
 
-  <h2>8. Cambios y contacto</h2>
-  <p>Podemos actualizar esta política cuando cambien la app o sus prácticas. Publicaremos la versión vigente en esta página. Para consultas de privacidad o solicitudes de eliminación, contacta a <a href="mailto:alejandrocarvajal8612@gmail.com">alejandrocarvajal8612@gmail.com</a>.</p>
+  <h2>8. Seguridad</h2>
+  <p>Aplicamos cifrado autenticado en reposo, derivación robusta de contraseñas, almacenamiento seguro de claves, bloqueo automático de la app, protección contra capturas de pantalla (FLAG_SECURE) y comunicaciones HTTPS/TLS 1.2+ con Firebase y EmailJS. Ningún sistema es infalible, pero aplicamos medidas técnicas y organizativas razonables para proteger tu información.</p>
+
+  <h2>9. Menores</h2>
+  <p>boxRock no está dirigida a menores de 13 años y no solicita intencionalmente información personal de ellos. Si crees que un menor nos proporcionó información, contáctanos para solicitar su eliminación.</p>
+
+  <h2>10. Cambios y contacto</h2>
+  <p>Podemos actualizar esta política cuando cambien la app o sus prácticas. Publicaremos la versión vigente en esta página con su fecha de actualización. Para consultas de privacidad o solicitudes de eliminación, contacta a <a href="mailto:alejandrocarvajalvargas@gmail.com">alejandrocarvajalvargas@gmail.com</a>.</p>
+
+  <p class="updated">© 2026 boxRock · Todos los derechos reservados.</p>
 </body>
 </html>
